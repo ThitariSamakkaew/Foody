@@ -1,4 +1,4 @@
-package com.thitari.foody
+package com.thitari.foody.util
 
 class Constants {
 

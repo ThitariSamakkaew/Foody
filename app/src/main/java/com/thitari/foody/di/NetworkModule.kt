@@ -1,6 +1,6 @@
 package com.thitari.foody.di
 
-import com.thitari.foody.Constants.Companion.BASE_URL
+import com.thitari.foody.util.Constants.Companion.BASE_URL
 import com.thitari.foody.data.network.FoodRecipesApi
 import dagger.Module
 import dagger.Provides
