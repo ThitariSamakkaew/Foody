@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class FoodRecipe(
 
-    @SerializedName("result")
+    @SerializedName("results")
     val results: List<Result>
 )

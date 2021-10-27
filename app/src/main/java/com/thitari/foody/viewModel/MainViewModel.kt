@@ -1,4 +1,4 @@
-package com.thitari.foody
+package com.thitari.foody.viewModel
 
 import android.app.Application
 import android.content.Context
