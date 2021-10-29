@@ -23,6 +23,5 @@ class RecipesViewModel(application: Application) : AndroidViewModel(application)
         queries[QUERIES_FILL_INGREDIENTS] = "true"
 
         return queries
-
     }
 }
