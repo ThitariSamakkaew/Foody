@@ -6,22 +6,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.datastore.dataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thitari.foody.R
 import com.thitari.foody.adapter.RecipesAdapter
+import com.thitari.foody.databinding.FragmentRecipesBinding
+import com.thitari.foody.util.NetworkListener
 import com.thitari.foody.util.NetworkResult
+import com.thitari.foody.util.observeOnce
 import com.thitari.foody.viewModel.MainViewModel
 import com.thitari.foody.viewModel.RecipesViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_recipes.view.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import org.jsoup.select.Collector.collect
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class RecipesFragment : Fragment() {
+
+    private val args by navArgs<RecipesFragmentArgs>()
+
+    private var _binding: FragmentRecipesBinding? = null
+    private val binding get() = _binding!!
 
     private lateinit var mainViewModel: MainViewModel
 
@@ -29,7 +41,7 @@ class RecipesFragment : Fragment() {
 
     private val recipesAdapter by lazy { RecipesAdapter() }
 
-    private lateinit var _view: View
+    private lateinit var newWorkListener: NetworkListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,26 +54,35 @@ class RecipesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _view = inflater.inflate(R.layout.fragment_recipes, container, false)
-        return _view
+        _binding = FragmentRecipesBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        binding.mainViewModel = mainViewModel
+
+
+        binding.floatingActionButton.setOnClickListener {
+            findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
+        }
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupRecyclerView()
         readDatabase()
+
     }
 
     private fun setupRecyclerView() {
-        _view.recyclerview.adapter = recipesAdapter
-        _view.recyclerview.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerview.adapter = recipesAdapter
+        binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
         showShimmerEffect()
     }
 
     private fun readDatabase() {
 
         lifecycleScope.launch {
-            mainViewModel.readRecipes.observe(viewLifecycleOwner, { databse ->
-                if (databse.isNotEmpty()) {
+            mainViewModel.readRecipes.observeOnce(viewLifecycleOwner, { databse ->
+                if (databse.isNotEmpty() && !args.backFromBottomSheet) {
                     Log.d("RecipesFragment", "readDatabase called!!")
                     recipesAdapter.setData(databse[0].foodRecipes)
                     hideShimmerEffect()
@@ -108,11 +129,15 @@ class RecipesFragment : Fragment() {
     }
 
     private fun showShimmerEffect() {
-        _view.recyclerview.showShimmer()
+        binding.recyclerview.showShimmer()
     }
 
     private fun hideShimmerEffect() {
-        _view.recyclerview.hideShimmer()
+        binding.recyclerview.hideShimmer()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

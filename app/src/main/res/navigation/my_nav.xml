@@ -9,15 +9,40 @@
         android:id="@+id/recipesFragment"
         android:name="com.thitari.foody.ui.fragments.recipe.RecipesFragment"
         android:label="Recipes"
-        tools:layout="@layout/fragment_recipes" />
+        tools:layout="@layout/fragment_recipes">
+
+        <action
+            android:id="@+id/action_recipesFragment_to_recipesBottomSheet"
+            app:destination="@id/recipesBottomSheet" />
+
+        <argument
+            android:name="backFromBottomSheet"
+            android:defaultValue="false"
+            app:argType="boolean" />
+    </fragment>
+
     <fragment
         android:id="@+id/favoriteRecipesFragment"
         android:name="com.thitari.foody.ui.fragments.favorite.FavoriteRecipesFragment"
         android:label="Favorite Recipes"
         tools:layout="@layout/fragment_favorite_recipes" />
+
     <fragment
         android:id="@+id/foodJokeFragment"
         android:name="com.thitari.foody.ui.fragments.foodjoke.FoodJokeFragment"
         android:label="Food Joke"
         tools:layout="@layout/fragment_food_joke" />
+
+    <dialog
+        android:id="@+id/recipesBottomSheet"
+        android:name="com.thitari.foody.ui.fragments.recipe.bottomsheet.RecipesBottomSheet"
+        android:label="recipes_bottom_sheet"
+        tools:layout="@layout/recipes_bottom_sheet">
+
+        <action
+            android:id="@+id/action_recipesBottomSheet_to_recipesFragment"
+            app:destination="@id/recipesFragment"/>
+
+    </dialog>
+
 </navigation>

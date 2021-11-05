@@ -10,4 +10,12 @@
 
     </style>
 
+    <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_background_color</item>
+        <item name="android:textColor">@color/chipTextColor</item>
+        <item name="checkedIconTint">@color/chipTextColor</item>
+
+    </style>
+
+
 </resources>

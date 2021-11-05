@@ -56,6 +56,7 @@ class MainViewModel @Inject constructor(
             }
         } else {
             recipesResponse.value = NetworkResult.Error("No Internet Connection.")
+
         }
     }
 
