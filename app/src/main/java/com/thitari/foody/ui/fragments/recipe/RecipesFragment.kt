@@ -1,5 +1,6 @@
 package com.thitari.foody.ui.fragments.recipe
 
+import com.thitari.foody.viewModel.RecipesViewModel
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,12 +20,10 @@ import com.thitari.foody.util.NetworkListener
 import com.thitari.foody.util.NetworkResult
 import com.thitari.foody.util.observeOnce
 import com.thitari.foody.viewModel.MainViewModel
-import com.thitari.foody.viewModel.RecipesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import org.jsoup.select.Collector.collect
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
@@ -60,7 +59,11 @@ class RecipesFragment : Fragment() {
 
 
         binding.floatingActionButton.setOnClickListener {
-            findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
+            if (recipesViewModel.networkStatus) {
+                findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
+            } else {
+                recipesViewModel.showNetworkStatus()
+            }
         }
 
         return binding.root
@@ -68,8 +71,21 @@ class RecipesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupRecyclerView()
-        readDatabase()
+        recipesViewModel.readBackOnline.observe(viewLifecycleOwner, {
+            recipesViewModel.backOnline = it
+        })
 
+        lifecycleScope.launch {
+            newWorkListener = NetworkListener()
+            newWorkListener.checkedNetworkAvailability(requireContext())
+                .collect { status ->
+                    Log.d("NetworkListener", status.toString())
+                    recipesViewModel.networkStatus = status
+                    recipesViewModel.showNetworkStatus()
+                    readDatabase()
+                }
+
+        }
     }
 
     private fun setupRecyclerView() {
