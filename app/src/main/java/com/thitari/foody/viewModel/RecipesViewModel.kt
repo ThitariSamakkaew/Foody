@@ -16,6 +16,7 @@ import com.thitari.foody.util.Constants.Companion.QUERIES_DIET
 import com.thitari.foody.util.Constants.Companion.QUERIES_FILL_INGREDIENTS
 import com.thitari.foody.util.Constants.Companion.QUERIES_NUMBER
 import com.thitari.foody.util.Constants.Companion.QUERIES_TYPE
+import com.thitari.foody.util.Constants.Companion.QUERY_SEARCH
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -58,6 +59,17 @@ class RecipesViewModel @Inject constructor(
         queries[QUERIES_API_KEY] = API_KEY
         queries[QUERIES_TYPE] = mealType
         queries[QUERIES_DIET] = dietType
+        queries[QUERIES_ADD_RECIPE_INFORMATION] = "true"
+        queries[QUERIES_FILL_INGREDIENTS] = "true"
+
+        return queries
+    }
+
+    fun applySearchQuery(searchQuery: String): HashMap<String, String> {
+        val queries: HashMap<String, String> = HashMap()
+        queries[QUERY_SEARCH] = searchQuery
+        queries[QUERIES_NUMBER] = DEFAULT_RECIPES_NUMBER
+        queries[QUERIES_API_KEY] = API_KEY
         queries[QUERIES_ADD_RECIPE_INFORMATION] = "true"
         queries[QUERIES_FILL_INGREDIENTS] = "true"
 
