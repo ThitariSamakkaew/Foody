@@ -35,6 +35,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
     private val args by navArgs<RecipesFragmentArgs>()
 
     private var _binding: FragmentRecipesBinding? = null
+
     private val binding get() = _binding!!
 
     private lateinit var mainViewModel: MainViewModel

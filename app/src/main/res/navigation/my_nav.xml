@@ -15,10 +15,15 @@
             android:id="@+id/action_recipesFragment_to_recipesBottomSheet"
             app:destination="@id/recipesBottomSheet" />
 
+        <action
+            android:id="@+id/action_recipesFragment_to_detailFragment"
+            app:destination="@id/detailsFragment" />
+
         <argument
             android:name="backFromBottomSheet"
             android:defaultValue="false"
             app:argType="boolean" />
+
     </fragment>
 
     <fragment
@@ -41,8 +46,19 @@
 
         <action
             android:id="@+id/action_recipesBottomSheet_to_recipesFragment"
-            app:destination="@id/recipesFragment"/>
+            app:destination="@id/recipesFragment" />
 
     </dialog>
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.thitari.foody.ui.fragments.detail.DetailsFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_details">
+
+        <argument
+            android:name="detailsResult"
+            app:argType="com.thitari.foody.models.Result" />
+    </fragment>
 
 </navigation>
