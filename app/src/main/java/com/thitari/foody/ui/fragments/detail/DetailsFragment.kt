@@ -14,6 +14,8 @@ import com.thitari.foody.adapter.PagerAdapter
 import com.thitari.foody.ui.fragments.ingredients.IngredientsFragment
 import com.thitari.foody.ui.fragments.instructions.InstructionsFragment
 import com.thitari.foody.ui.fragments.overview.OverviewFragment
+import com.thitari.foody.util.Constants
+import com.thitari.foody.util.Constants.Companion.RECIPE_RESULT_KEY
 import kotlinx.android.synthetic.main.fragment_details.*
 
 class DetailsFragment : Fragment() {
@@ -45,7 +47,7 @@ class DetailsFragment : Fragment() {
 
         val resultBundle = Bundle()
         resultBundle.putParcelable(
-            "recipeBundle",
+            RECIPE_RESULT_KEY,
             args.detailsResult
         ) //args.detailsResult มาจาก argument in my_nav
 
