@@ -10,7 +10,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.thitari.foody.data.Repository
-import com.thitari.foody.data.database.RecipesEntity
+import com.thitari.foody.data.database.entities.FavoritesEntity
+import com.thitari.foody.data.database.entities.RecipesEntity
 import com.thitari.foody.models.FoodRecipe
 import com.thitari.foody.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,10 +28,28 @@ class MainViewModel @Inject constructor(
 ) : AndroidViewModel(application) {
 
     /** RoomDatabase */
-    val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readDatabase().asLiveData()
+    val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readRecipes().asLiveData()
+
+    val readFavoriteRecipes: LiveData<List<FavoritesEntity>> =
+        repository.local.readFavorite().asLiveData()
 
     private fun insertRecipes(recipesEntity: RecipesEntity) =
         viewModelScope.launch(Dispatchers.IO) { repository.local.insertRecipes(recipesEntity) }
+
+    private fun insertFavoriteRecipes(favoritesEntity: FavoritesEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.insertFavoriteRecipes(favoritesEntity)
+        }
+
+    private fun deleteFavoriteRecipes(favoritesEntity: FavoritesEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.deleteFavoriteRecipe(favoritesEntity)
+        }
+
+    private fun deleteAllFavoriteRecipes() =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.deleteAllFavoriteRecipes()
+        }
 
     /** Retrofit */
     val recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
