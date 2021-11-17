@@ -21,9 +21,12 @@
     <color name="checkedChipTextColor">@color/color_primary</color>
     <color name="chipTextColor">@color/darkGray</color>
 
-    
+
     //DetailsActivity
     <color name="actionBarBackgroundColor">@color/color_primary</color>
 
-
+    //Ingredients
+    <color name="strokeColor">@color/lightMediumGray</color>
+    <color name="cardBackgroundColor">@color/white</color>
+    <color name="titleColor">@color/darker</color>
 </resources>

@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import coil.load
 import com.thitari.foody.R
 import com.thitari.foody.models.Result
+import com.thitari.foody.util.Constants
 import kotlinx.android.synthetic.main.fragment_overview.view.*
 import kotlinx.android.synthetic.main.recipes_bottom_sheet.view.*
 import org.jsoup.Jsoup
@@ -25,7 +26,7 @@ class OverviewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val args = arguments
-        val bundle: Result? = args?.getParcelable("recipeBundle")
+        val bundle: Result? = args?.getParcelable(Constants.RECIPE_RESULT_KEY)
         view.ivMainOverview.load(bundle?.image)
         view.tvTitle.text = bundle?.title
         view.tvLikes.text = bundle?.aggregateLikes.toString()

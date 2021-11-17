@@ -10,4 +10,7 @@
     <string name="dairy_free">DairyFree</string>
     <string name="healthy">Healthy</string>
     <string name="cheap">Cheap</string>
+    <string name="original">Original</string>
+    <string name="consistency">Consistency</string>
+    <string name="grams">Grams</string>
 </resources>
