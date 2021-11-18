@@ -13,4 +13,5 @@
     <string name="original">Original</string>
     <string name="consistency">Consistency</string>
     <string name="grams">Grams</string>
+    <string name="save_to_favorite">Save To Favorite</string>
 </resources>
