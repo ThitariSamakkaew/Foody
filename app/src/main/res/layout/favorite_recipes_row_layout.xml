@@ -67,6 +67,7 @@
 
                 <TextView
                     android:id="@+id/tvDescriptionFavoriteRecipesRowLayout"
+                    parseHtml="@{favoriteEntity.result.summary}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -75,8 +76,7 @@
                     android:textColor="@color/darkGray"
                     app:layout_constraintEnd_toEndOf="@id/tvTitleFavoriteRecipesRowLayout"
                     app:layout_constraintStart_toStartOf="@id/tvTitleFavoriteRecipesRowLayout"
-                    app:layout_constraintTop_toBottomOf="@id/tvTitleFavoriteRecipesRowLayout"
-                    tools:text="@{favoriteEntity.result.summary}" />
+                    app:layout_constraintTop_toBottomOf="@id/tvTitleFavoriteRecipesRowLayout" />
 
                 <ImageView
                     android:id="@+id/ivFavoriteRecipesHeart"
