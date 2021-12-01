@@ -46,7 +46,7 @@ class FoodJokeFragment : Fragment() {
         mainViewModel.foodJokeResponse.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is NetworkResult.Success -> {
-                    binding.tvFoodJoke.text = response.data?.text
+                    binding.tvFoodJoke?.text = response.data?.text
                     if (response.data != null) {
                         foodJoke = response.data.text
                     }
@@ -88,7 +88,7 @@ class FoodJokeFragment : Fragment() {
         lifecycleScope.launch {
             mainViewModel.readFoodJoke.observe(viewLifecycleOwner, { database ->
                 if (!database.isNotEmpty()) {
-                    binding.tvFoodJoke.text = database[0].foodJoke.text
+                    binding.tvFoodJoke?.text = database[0].foodJoke.text
                     foodJoke = database[0].foodJoke.text
                 }
             })
