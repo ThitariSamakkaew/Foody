@@ -80,7 +80,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
             recipesViewModel.backOnline = it
         })
 
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenStarted {
             newWorkListener = NetworkListener()
             newWorkListener.checkedNetworkAvailability(requireContext())
                 .collect { status ->
@@ -89,7 +89,6 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
                     recipesViewModel.showNetworkStatus()
                     readDatabase()
                 }
-
         }
     }
 

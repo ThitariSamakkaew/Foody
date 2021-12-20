@@ -18,7 +18,6 @@ import com.thitari.foody.databinding.FavoriteRecipesRowLayoutBinding
 import com.thitari.foody.ui.fragments.favorite.FavoriteRecipesFragmentDirections
 import com.thitari.foody.util.RecipesDiffUtil
 import com.thitari.foody.viewModel.MainViewModel
-import kotlinx.android.synthetic.main.favorite_recipes_row_layout.view.*
 
 class FavoriteRecipesAdapter(
     private val activity: Activity,
@@ -38,7 +37,7 @@ class FavoriteRecipesAdapter(
 
     private var favoriteRecipes = emptyList<FavoritesEntity>()
 
-    class FavoriteViewHolder(private val binding: FavoriteRecipesRowLayoutBinding) :
+    class FavoriteViewHolder(val binding: FavoriteRecipesRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(favoritesEntity: FavoritesEntity) {
@@ -68,7 +67,7 @@ class FavoriteRecipesAdapter(
         holder.bind(currentRecipes)
 
         //single click listener
-        holder.itemView.favoriteRowLayout.setOnClickListener {
+        holder.binding.favoriteRowLayout.setOnClickListener {
 
             if (multiSelection) {
                 applySelection(holder, currentRecipes)
@@ -81,7 +80,7 @@ class FavoriteRecipesAdapter(
             }
         }
         //long click listener
-        holder.itemView.favoriteRowLayout.setOnLongClickListener {
+        holder.binding.favoriteRowLayout.setOnLongClickListener {
             if (!multiSelection) {
                 multiSelection = true
                 activity.startActionMode(this)
@@ -111,14 +110,14 @@ class FavoriteRecipesAdapter(
         backgroundColor: Int,
         strokeColor: Int
     ) {
-        holder.itemView.favoriteRowLayout.setBackgroundColor(
+        holder.binding.favoriteRowLayout.setBackgroundColor(
             ContextCompat.getColor(
                 activity,
                 backgroundColor
             )
 
         )
-        holder.itemView.cvFavoriteRow.strokeColor = ContextCompat.getColor(activity, strokeColor)
+        holder.binding.cvFavoriteRow.strokeColor = ContextCompat.getColor(activity, strokeColor)
     }
 
     override fun getItemCount(): Int {
@@ -197,7 +196,7 @@ class FavoriteRecipesAdapter(
     }
 
     fun clearContextualActionMode() {
-        if(this :: favoriteActionMode.isInitialized){
+        if (this::favoriteActionMode.isInitialized) {
             favoriteActionMode.finish()
         }
     }

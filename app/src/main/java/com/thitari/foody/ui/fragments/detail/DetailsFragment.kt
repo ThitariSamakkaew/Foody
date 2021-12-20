@@ -1,8 +1,6 @@
 package com.thitari.foody.ui.fragments.detail
 
 import android.os.Bundle
-import android.os.Message
-import android.renderscript.ScriptGroup
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
@@ -10,28 +8,28 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.thitari.foody.R
 import com.thitari.foody.adapter.PagerAdapter
 import com.thitari.foody.data.database.entities.FavoritesEntity
+import com.thitari.foody.databinding.FragmentDetailsBinding
 import com.thitari.foody.ui.fragments.ingredients.IngredientsFragment
 import com.thitari.foody.ui.fragments.instructions.InstructionsFragment
 import com.thitari.foody.ui.fragments.overview.OverviewFragment
-import com.thitari.foody.util.Constants
 import com.thitari.foody.util.Constants.Companion.RECIPE_RESULT_KEY
 import com.thitari.foody.viewModel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_details.*
-import java.lang.Exception
 
 @AndroidEntryPoint
 class DetailsFragment : Fragment() {
+
+    private lateinit var binding: FragmentDetailsBinding
 
     private val args by navArgs<DetailsFragmentArgs>()
     private val mainViewModel: MainViewModel by viewModels()
@@ -46,7 +44,8 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_details, container, false)
+        binding = FragmentDetailsBinding.inflate(layoutInflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -69,11 +68,11 @@ class DetailsFragment : Fragment() {
             args.detailsResult
         ) //args.detailsResult มาจาก argument in my_nav
 
-        val adapter = PagerAdapter(resultBundle, fragments, title, childFragmentManager)
-        viewPager.adapter = adapter
-
-        detailsTabLayout.setupWithViewPager(viewPager)
-
+        val pagerAdapter = PagerAdapter(resultBundle, fragments, this)
+        binding.viewPager2.apply { adapter = pagerAdapter }
+        TabLayoutMediator(binding.detailsTabLayout, binding.viewPager2) { tab, position ->
+            tab.text = title[position]
+        }.attach()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -133,6 +132,5 @@ class DetailsFragment : Fragment() {
 
     private fun changeMenuItemColor(item: MenuItem, color: Int) {
         item.icon.setTint(ContextCompat.getColor(requireContext(), color))
-
     }
 }

@@ -1,86 +1,126 @@
 package com.thitari.foody.ui.fragments.overview
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import coil.load
 import com.thitari.foody.R
+import com.thitari.foody.databinding.FragmentOverviewBinding
 import com.thitari.foody.models.Result
 import com.thitari.foody.util.Constants
-import kotlinx.android.synthetic.main.fragment_overview.view.*
-import kotlinx.android.synthetic.main.recipes_bottom_sheet.view.*
 import org.jsoup.Jsoup
 
 class OverviewFragment : Fragment() {
+    private val binding by lazy {
+        FragmentOverviewBinding.inflate(
+            LayoutInflater.from(
+                requireContext()
+            )
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_overview, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val args = arguments
         val bundle: Result? = args?.getParcelable(Constants.RECIPE_RESULT_KEY)
-        view.ivMainOverview.load(bundle?.image)
-        view.tvTitle.text = bundle?.title
-        view.tvLikes.text = bundle?.aggregateLikes.toString()
-        view.tvTime.text = bundle?.readyInMinutes.toString()
+        binding.ivMainOverview.load(bundle?.image)
+        binding.tvTitle.text = bundle?.title
+        binding.tvLikes.text = bundle?.aggregateLikes.toString()
+        binding.tvTime.text = bundle?.readyInMinutes.toString()
         bundle?.summary.let {
             val summary = Jsoup.parse(it).text()
-            view.tvSummary.text = summary
+            binding.tvSummary.text = summary
         }
 
         if (bundle?.vegetarian == true) {
-            view.ivVegetarian.setColorFilter(
+            binding.ivVegetarian.setColorFilter(
                 ContextCompat.getColor(
                     requireContext(),
                     R.color.green
                 )
             )
-            view.tvVegetarian.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+            binding.tvVegetarian.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.green
+                )
+            )
         }
         if (bundle?.vegan == true) {
-            view.ivVegan.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
-            view.tvVegan.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+            binding.ivVegan.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
+            binding.tvVegan.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
         }
         if (bundle?.glutenFree == true) {
-            view.ivGlutenFree.setColorFilter(
+            binding.ivGlutenFree.setColorFilter(
                 ContextCompat.getColor(
                     requireContext(),
                     R.color.green
                 )
             )
-            view.tvGlutenFree.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+            binding.tvGlutenFree.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.green
+                )
+            )
         }
         if (bundle?.dairyFree == true) {
-            view.ivDairyFree.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
-            view.tvDairyFree.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+            binding.ivDairyFree.setColorFilter(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.green
+                )
+            )
+            binding.tvDairyFree.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.green
+                )
+            )
 
         }
         if (bundle?.dairyFree == true) {
-            view.ivDairyFree.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
-            view.tvDairyFree.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+            binding.ivDairyFree.setColorFilter(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.green
+                )
+            )
+            binding.tvDairyFree.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.green
+                )
+            )
 
         }
         if (bundle?.veryHealthy == true) {
-            view.ivHealthy.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
-            view.tvHealthy.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+            binding.ivHealthy.setColorFilter(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.green
+                )
+            )
+            binding.tvHealthy.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
 
         }
         if (bundle?.cheap == true) {
-            view.ivCheap.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
-            view.tvCheap.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+            binding.ivCheap.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
+            binding.tvCheap.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
 
         }
 
         super.onViewCreated(view, savedInstanceState)
     }
-
 }
 

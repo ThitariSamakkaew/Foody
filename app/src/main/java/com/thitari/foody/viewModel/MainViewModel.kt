@@ -137,7 +137,6 @@ class MainViewModel @Inject constructor(
                     offlineCatchRecipes(
                         searchFoodRecipe
                     )
-
                 }
             }
         } catch (e: Exception) {

@@ -1,7 +1,6 @@
 package com.thitari.foody.ui.fragments.favorite
 
 import android.os.Bundle
-import android.os.Message
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -78,8 +77,8 @@ class FavoriteRecipesFragment : Fragment() {
             .setAction("Okay") {}.show()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
         favoriteRecipesAdapter.clearContextualActionMode()
     }

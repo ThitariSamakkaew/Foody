@@ -1,110 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="4dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cvIngredientsLowLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/strokeColor"
-        app:strokeWidth="1dp">
+        android:padding="4dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/backgroundIngredientsLowLayout"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvIngredientsLowLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/cardBackgroundColor"
-            android:elevation="2dp">
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/strokeColor"
+            app:strokeWidth="1dp">
 
-            <View
-                android:id="@+id/vWhiteBackgroundIngredientsLowLayout"
-                android:layout_width="120dp"
-                android:layout_height="0dp"
-                android:background="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/backgroundIngredientsLowLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/cardBackgroundColor"
+                android:elevation="2dp">
 
-            <ImageView
-                android:id="@+id/ivIngredientsLowLayout"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:layout_constraintBottom_toBottomOf="@id/vWhiteBackgroundIngredientsLowLayout"
-                app:layout_constraintEnd_toEndOf="@id/vWhiteBackgroundIngredientsLowLayout"
-                app:layout_constraintStart_toStartOf="@id/vWhiteBackgroundIngredientsLowLayout"
-                app:layout_constraintTop_toTopOf="@id/vWhiteBackgroundIngredientsLowLayout" />
+                <View
+                    android:id="@+id/vWhiteBackgroundIngredientsLowLayout"
+                    android:layout_width="120dp"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvIngredientsName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
-                android:textColor="@color/darker"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/vWhiteBackgroundIngredientsLowLayout"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Name" />
+                <ImageView
+                    android:id="@+id/ivIngredientsLowLayout"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:layout_constraintBottom_toBottomOf="@id/vWhiteBackgroundIngredientsLowLayout"
+                    app:layout_constraintEnd_toEndOf="@id/vWhiteBackgroundIngredientsLowLayout"
+                    app:layout_constraintStart_toStartOf="@id/vWhiteBackgroundIngredientsLowLayout"
+                    app:layout_constraintTop_toTopOf="@id/vWhiteBackgroundIngredientsLowLayout" />
 
-            <TextView
-                android:id="@+id/tvIngredientAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                app:layout_constraintStart_toStartOf="@id/tvIngredientsName"
-                app:layout_constraintTop_toBottomOf="@+id/tvIngredientsName"
-                tools:text="100" />
+                <TextView
+                    android:id="@+id/tvIngredientsName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:textColor="@color/darker"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/vWhiteBackgroundIngredientsLowLayout"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Name" />
 
-            <TextView
-                android:id="@+id/tvIngredientsUnit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="@id/tvIngredientAmount"
-                app:layout_constraintStart_toEndOf="@id/tvIngredientAmount"
-                app:layout_constraintTop_toTopOf="@id/tvIngredientAmount"
-                tools:text="@string/grams" />
+                <TextView
+                    android:id="@+id/tvIngredientAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintStart_toStartOf="@id/tvIngredientsName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvIngredientsName"
+                    tools:text="100" />
 
-            <TextView
-                android:id="@+id/tvIngredientsConsistency"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/tvIngredientAmount"
-                app:layout_constraintTop_toBottomOf="@id/tvIngredientAmount"
-                tools:text="@string/consistency" />
+                <TextView
+                    android:id="@+id/tvIngredientsUnit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tvIngredientAmount"
+                    app:layout_constraintStart_toEndOf="@id/tvIngredientAmount"
+                    app:layout_constraintTop_toTopOf="@id/tvIngredientAmount"
+                    tools:text="@string/grams" />
 
-            <TextView
-                android:id="@+id/tvIngredientsOriginal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/tvIngredientsConsistency"
-                app:layout_constraintTop_toBottomOf="@id/tvIngredientsConsistency"
-                app:layout_constraintVertical_bias="0.0"
-                tools:text="@string/original" />
+                <TextView
+                    android:id="@+id/tvIngredientsConsistency"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tvIngredientAmount"
+                    app:layout_constraintTop_toBottomOf="@id/tvIngredientAmount"
+                    tools:text="@string/consistency" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tvIngredientsOriginal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tvIngredientsConsistency"
+                    app:layout_constraintTop_toBottomOf="@id/tvIngredientsConsistency"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:text="@string/original" />
 
-    </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

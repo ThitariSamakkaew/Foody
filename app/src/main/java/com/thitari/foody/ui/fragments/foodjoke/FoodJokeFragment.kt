@@ -34,7 +34,7 @@ class FoodJokeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentFoodJokeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
@@ -79,7 +79,6 @@ class FoodJokeFragment : Fragment() {
                 this.putExtra(Intent.EXTRA_TEXT, foodJoke)
                 this.type = "type/plain"
             }
-            startActivity(shareIntent)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -94,6 +93,7 @@ class FoodJokeFragment : Fragment() {
             })
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
